@@ -15,3 +15,4 @@ This is an empty spring boot rest project that uses Tomcat. It was created just 
 ```
 http://localhost:8080/emptyspringrest/users/1
 ```
+ test
