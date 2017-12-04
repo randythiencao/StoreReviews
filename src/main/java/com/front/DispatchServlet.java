@@ -26,6 +26,16 @@ public class DispatchServlet extends DefaultServlet
 	ReimbController rc = new ReimbController();
 	ReimbMController rmc = new ReimbMController();
 
+	//Connect to Angular4
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+        resp.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, OPTIONS, DELETE");
+        resp.setHeader("Access-Control-Allow-Credentials", "true");
+		super.service(req, resp);
+	}
+
+
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
 	{
