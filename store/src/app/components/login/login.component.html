@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <form #loginForm="ngForm" class="form-signin" (ngSubmit)="login(loginForm)">
+        <h2 class="form-signin-heading" align="center">Welcome</h2>
+        <hr class="colorgraph">
+        <label for="inputUsername" class="sr-only">Email address</label>
+        <input type="text" name="username" id="inputUsername" ngModel class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" ngModel class="form-control" placeholder="Password" required>
+        <hr class="colorgraph">
+
+          <button class="btn btn-md btn-primary btn-block" type="button" name="Login" value="Login">Sign in</button>
+          <button class="btn btn-md btn-primary btn-block" name="Register" value="Register" >Register</button>
+
+
+      </form>
+      
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+</div>
