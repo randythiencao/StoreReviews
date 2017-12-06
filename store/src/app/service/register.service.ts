@@ -18,6 +18,8 @@ export class RegisterService {
     let url: string = 'http://localhost:8080/Reimbursement/register';
     return this.http.post(url, user)
     .map(res=>res.json());
+    // this.http.post(url, user).map(res=>res.json()).subscribe( (resp) => {
+    //   this.dataSubject.next(resp);
   }
 
 }

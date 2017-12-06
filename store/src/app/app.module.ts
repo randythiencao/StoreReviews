@@ -14,9 +14,10 @@ import { appRoutes } from './routes';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './components/register/register.component';
-import { ModalComponent } from './components/modal/modal.component';
 import { LoginService } from './service/login.service';
 import { RegisterService } from './service/register.service';
+import { ApiComponent } from './components/api/api.component';
+import { ApiService } from './service/api.service';
 
 
 
@@ -35,11 +36,12 @@ import { RegisterService } from './service/register.service';
     NavComponent,
     LoginComponent,
     RegisterComponent,
-    ModalComponent,
+    ApiComponent
    ],
   providers: [
     LoginService,
-    RegisterService
+    RegisterService,
+    ApiService
     
    ],
   bootstrap: [AppComponent]
