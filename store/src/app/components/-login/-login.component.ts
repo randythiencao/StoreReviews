@@ -1,34 +1,34 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../service/auth.service';
-import {User} from '../beans/User';
-import {Router} from '@angular/router';
+import { AuthService } from '../../service/auth.service';
+import { Cred } from '../beans/Cred';
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app--login',
-  templateUrl: './-login.component.html',
-  styleUrls: ['./-login.component.css']
+    selector: 'app--login',
+    templateUrl: './-login.component.html',
+    styleUrls: ['./-login.component.css']
 })
 export class LoginComponent implements OnInit {
 
-  model: User;
-  messages: any;
+    model: Cred;
+    messages: any;
 
-  constructor(private authService: AuthService,
-              private router: Router) {
-  }
+    constructor(private authService: AuthService,
+        private router: Router) {
+    }
+    
+    ngOnInit(): void {
+        this.model = new Cred();
+    }
 
-  ngOnInit(): void {
-      this.model = new User();
-  }
-
-  onSubmit(): void {
-      this.authService
-          .login(this.model)
-          .subscribe(isLoggedIn => {
-              if (isLoggedIn) {
-                  this.router.navigate(['/register']);
-              } else {
-                  this.messages ='Email/password incorrect!';
-              }
-          });
-  }
+    onSubmit(): void {
+        this.authService
+            .login(this.model)
+            .subscribe(isLoggedIn => {
+                if (isLoggedIn) {
+                    this.router.navigate(['/register']);
+                } else {
+                    this.messages = 'Email/password incorrect!';
+                }
+            });
+    }
 }

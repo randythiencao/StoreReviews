@@ -1,10 +1,13 @@
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+import { Observable } from 'rxjs/Observable';
 
-import {User} from '../components/beans/User';
+import { User } from '../components/beans/User';
+import { Cred } from '../components/beans/Cred';
+
+import { environment } from '../../environments/environment';
 // import {API_URL} from '../../app.component';
 
 @Injectable()
@@ -22,8 +25,8 @@ export class AuthService {
         return Observable.throw(errorMessage);
     }
 
-    login(user: User): Observable<boolean> {
-        return this.http.post('http://localhost:8080/SprApp/users/login', user)
+    login(cred: Cred): Observable<boolean> {
+        return this.http.post(environment.context + 'users/login', cred)//, { withCredentials: true })
             .map(response => response.json())
             .map((currentUser: User) => {
                 if (!User.isNull(currentUser)) {
@@ -43,7 +46,7 @@ export class AuthService {
     }
 
     register(user: User): Observable<User> {
-        return this.http.post('http://localhost:8080/SprApp/users/register', user)
+        return this.http.post(environment.context + 'users/register', user)
             .map(response => response.json()) //as User)
             // .map(currentUser => !User.isNull(currentUser))
             .catch(AuthService.handleError);
