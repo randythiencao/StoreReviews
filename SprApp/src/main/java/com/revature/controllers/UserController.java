@@ -35,12 +35,13 @@ public class UserController {
 //	}
 
 	@PostMapping("register")
-	public ResponseEntity<?> regUser(@RequestBody UserReg uReg) {
+	public ResponseEntity<?> regUser(@RequestBody User uReg) {
 		User u = new User();
 		u.setUsername(uReg.getUsername());
-		u.setFirstName(uReg.getFirstname());
-		u.setLastName(uReg.getLastname());
+		u.setFirstName(uReg.getFirstName());
+		u.setLastName(uReg.getLastName());
 		u.setPassword(uReg.getPassword());
+		u.setRoleId(uReg.getRoleId());
 		System.out.println(uReg);
 		us.addUser(u);
 		return new ResponseEntity<>(uReg, HttpStatus.OK);
