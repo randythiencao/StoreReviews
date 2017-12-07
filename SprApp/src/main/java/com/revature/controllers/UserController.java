@@ -1,6 +1,7 @@
 package com.revature.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,25 +10,39 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.User;
 import com.revature.entities.UserReg;
+import com.revature.services.UserService;
 
 @RestController
 @RequestMapping("users")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(allowCredentials="true",origins = "http://localhost:4200")
 public class UserController {
 
-	@PostMapping("login")
-	public ResponseEntity<?> getUser(@RequestBody UserReg uReg) {
-		if (uReg.getEmail().equals("test") && uReg.getPassword().equals("test")) {
-			return new ResponseEntity<>(uReg, HttpStatus.OK);
-		}
-		return new ResponseEntity<>(new UserReg(), HttpStatus.OK);
-
-	}
+	@Autowired
+	UserService us;
+	
+//	@PostMapping("login")
+//	public ResponseEntity<?> getUser(@RequestBody UserReg uReg) {
+//
+//		User u = ud.findByUsername(uReg.getUsername());//uReg.getUsername());
+//		System.out.println(u);
+//		if (uReg.getUsername().equals("test") && uReg.getPassword().equals("test")) {
+//			return new ResponseEntity<>(uReg, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<>(new UserReg(), HttpStatus.OK);
+//
+//	}
 
 	@PostMapping("register")
 	public ResponseEntity<?> regUser(@RequestBody UserReg uReg) {
+		User u = new User();
+		u.setUsername(uReg.getUsername());
+		u.setFirstName(uReg.getFirstname());
+		u.setLastName(uReg.getLastname());
+		u.setPassword(uReg.getPassword());
 		System.out.println(uReg);
+		us.addUser(u);
 		return new ResponseEntity<>(uReg, HttpStatus.OK);
 
 	}

@@ -2,14 +2,14 @@ package com.revature.entities;
 
 public class UserReg {
 	private int id;
-    private String email;
+    private String username;
     private String password;
     private String firstname;
     private String lastname;
-	public UserReg(int id, String email, String password, String firstname, String lastname) {
+	public UserReg(int id, String username, String password, String firstname, String lastname) {
 		super();
 		this.id = id;
-		this.email = email;
+		this.username = username;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
@@ -24,11 +24,11 @@ public class UserReg {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getEmail() {
-		return email;
+	public String getUsername() {
+		return username;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
 		return password;
@@ -50,10 +50,10 @@ public class UserReg {
 	}
 	@Override
 	public String toString() {
-		return "UserReg [id=" + id + ", email=" + email + ", password=" + password + ", firstname=" + firstname
+		return "UserReg [id=" + id + ", username=" + username + ", password=" + password + ", firstname=" + firstname
 				+ ", lastname=" + lastname + "]";
 	}
-    
+	
     
       
 }
