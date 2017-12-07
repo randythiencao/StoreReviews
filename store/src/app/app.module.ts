@@ -11,14 +11,13 @@ import {AppComponent} from './app.component';
 import {NavComponent} from './nav/nav.component';
 
 import { appRoutes } from './routes';
-import { LoginComponent } from './components/login/login.component';
+// import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginService } from './service/login.service';
-import { RegisterService } from './service/register.service';
-import { ApiComponent } from './components/api/api.component';
-import { ApiService } from './service/api.service';
-
+import { RegComponent } from './components/-reg/-reg.component';
+import { AuthService } from './service/auth.service';
+import { LoginComponent } from './components/-login/-login.component';
+// import { HttpCachedComponent } from './components/http-cached/http-cached.component';
+// import { FlashcardService } from './service/flashcard.service';
 
 
 @NgModule({
@@ -35,13 +34,12 @@ import { ApiService } from './service/api.service';
     AppComponent,
     NavComponent,
     LoginComponent,
-    RegisterComponent,
-    ApiComponent
+    RegComponent,
+    // HttpCachedComponent
    ],
   providers: [
-    LoginService,
-    RegisterService,
-    ApiService
+    AuthService
+    // FlashcardService
     
    ],
   bootstrap: [AppComponent]
