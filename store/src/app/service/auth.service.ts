@@ -26,7 +26,7 @@ export class AuthService {
     }
 
     login(cred: Cred): Observable<boolean> {
-        return this.http.post(environment.context + 'users/login', cred)//, { withCredentials: true })
+        return this.http.post(environment.context + 'users/login', cred, { withCredentials: true })
             .map(response => response.json())
             .map((currentUser: User) => {
                 if (!User.isNull(currentUser)) {
@@ -46,7 +46,8 @@ export class AuthService {
     }
 
     register(user: User): Observable<User> {
-        return this.http.post(environment.context + 'users/register', user)
+        console.log('submitted ' + user.firstName);
+        return this.http.post(environment.context + 'users/register', user, { withCredentials: true })
             .map(response => response.json()) //as User)
             // .map(currentUser => !User.isNull(currentUser))
             .catch(AuthService.handleError);

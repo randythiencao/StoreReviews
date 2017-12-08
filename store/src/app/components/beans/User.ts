@@ -1,18 +1,20 @@
 export class User {
 
     id: string;
-    email: string;
+    username: string;
     password: string;
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    roleId: number;
 
     constructor() {
     }
 
     public static isNull(user: User): boolean {
-        return user.email === null &&
+        return user.username === null &&
             user.password === null &&
-            user.firstname === null &&
-            user.lastname === null;
+            user.firstName === null &&
+            user.lastName === null;
     }
 }

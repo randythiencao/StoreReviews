@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
             .login(this.model)
             .subscribe(isLoggedIn => {
                 if (isLoggedIn) {
-                    this.router.navigate(['/register']);
+                    this.router.navigate(['/main']);
                 } else {
                     this.messages = 'Email/password incorrect!';
                 }
