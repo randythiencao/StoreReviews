@@ -17,6 +17,7 @@ import { RegComponent } from './components/-reg/-reg.component';
 import { AuthService } from './service/auth.service';
 import { LoginComponent } from './components/-login/-login.component';
 import { MainComponent } from './components/main/main.component';
+import { AuthGuard } from './service/auth.guard';
 // import { HttpCachedComponent } from './components/http-cached/http-cached.component';
 // import { FlashcardService } from './service/flashcard.service';
 
@@ -40,7 +41,8 @@ import { MainComponent } from './components/main/main.component';
     // HttpCachedComponent
    ],
   providers: [
-    AuthService
+    AuthService,
+    AuthGuard
     // FlashcardService
     
    ],

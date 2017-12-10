@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { environment } from '../../../environments/environment';
+import { User } from '../beans/User';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  myUsers: Array<User>;
+
+  constructor(private http: Http) { }
 
   ngOnInit() {
+    this.getAllUsers();
+  }
+
+
+  getAllUsers() {
+    this.http.get(environment.context + 'main').subscribe(successResp => {
+      this.myUsers = successResp.json();
+    },
+      failRes => {
+
+      });
   }
 
 }

@@ -21,14 +21,6 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        this.authService
-            .login(this.model)
-            .subscribe(isLoggedIn => {
-                if (isLoggedIn) {
-                    this.router.navigate(['/main']);
-                } else {
-                    this.messages = 'Email/password incorrect!';
-                }
-            });
+        this.authService.login(this.model);
     }
 }
