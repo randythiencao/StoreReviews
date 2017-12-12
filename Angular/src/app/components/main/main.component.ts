@@ -10,6 +10,7 @@ import {
 import {
   AgmCoreModule
 } from '@agm/core';
+import { Restaurant } from '../beans/Restaurant';
 
 @Component({
   selector: 'app-main',
@@ -21,18 +22,47 @@ export class MainComponent implements OnInit {
   // google maps zoom level
   zoom: number = 8;
 
+  restaurants: Array<Restaurant>;
   // initial center position for the map
   lat: number = 28.0720588;
   lng: number = -82.4284711;
 
-  constructor(private http: Http,
-    private geocodingAPIService: GeocodingApiService) { }
+
+  markers: marker[] = [
+    {
+      lat: 28.0720588,
+      lng: -82.4284711,
+      label: 'B',
+      draggable: false
+    },
+    {
+      lat: 28.0622991,
+      lng: -82.4090294,
+      label: 'C',
+      draggable: true
+    }
+  ]
+
+  constructor(private http: Http) { }
 
   ngOnInit() {
+    this.restaurants = JSON.parse(sessionStorage.getItem('allRestaurants'));
+    this.populateMap();
   }
 
-
-
+ 
+  populateMap() {
+    for (let rest of this.restaurants)
+    {
+      console.log(rest)
+      this.markers.push({
+        lat: 28.0807637,
+        lng: -82.4305818,
+        label: 't',
+        draggable: false
+      });
+    }
+  }
 
   clickedMarker(label: string, index: number) {
     console.log(`clicked the marker: ${label || index}`)
@@ -50,31 +80,13 @@ export class MainComponent implements OnInit {
     console.log('dragEnd', m, $event);
   }
 
-  markers: marker[] = [
-    {
-      lat: 28.0807637,
-      lng: -82.4305816,
-      label: 'A',
-      draggable: true
-    },
-    {
-      lat: 28.0720588,
-      lng: -82.4284711,
-      label: 'B',
-      draggable: false
-    },
-    {
-      lat: 28.0622991,
-      lng: -82.4090294,
-      label: 'C',
-      draggable: true
-    }
-  ]
+
+
 }
 // just an interface for type safety.
 interface marker {
   lat: number;
   lng: number;
-  label?: string;
+  label?: String;
   draggable: boolean;
 }

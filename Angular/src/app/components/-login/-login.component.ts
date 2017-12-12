@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../beans/User';
 import { ActivatedRoute } from '@angular/router';
 import { AlertService } from '../../service/alert.service';
+import { RestService } from '../../service/rest-service.service';
 @Component({
     selector: 'app--login',
     templateUrl: './-login.component.html',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private authenticationService: AuthService,
-        private alertService: AlertService) { }
+        private alertService: AlertService,
+        private restService: RestService) { }
 
     ngOnInit() {
         // reset login status
@@ -35,12 +37,20 @@ export class LoginComponent implements OnInit {
         this.loading = true;
         this.authenticationService.login(this.model)
             .subscribe(
-                data => {
+            data => {
+                this.getRestaurants();
                     this.router.navigate([this.returnUrl]);
-                },
-                error => {
-                    this.alertService.error(error);
-                    this.loading = false;
-                });
+
+            },
+            error => {
+                this.alertService.error(error);
+                this.loading = false;
+            });
+    }
+
+    getRestaurants()
+    {
+        this.restService.getAllRestaurant().subscribe(resp => {console.log('got all rest')},
+        err => {console.log('failed to get rest')})
     }
 }

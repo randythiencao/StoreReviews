@@ -37,13 +37,21 @@ export class AddComponent implements OnInit, OnDestroy {
     getData() {
         console.log('this id is ' +this.id);
         this.restaurantService.setId(this.id);
-        this.restaurantsObserver = this.restaurantService.data$.subscribe(
+        // this.restaurantsObserver = this.restaurantService.data$.subscribe(
+        //     requestData => {
+        //         console.log(requestData);
+        //         this.restaurants = requestData;
+        //     },
+        //     err => console.log(err)
+        // );
+        this.restaurantService.testGet(this.id).subscribe(
             requestData => {
-                console.log(requestData);
-                this.restaurants = requestData;
-            },
-            err => console.log(err)
-        );
+                    this.restaurants = JSON.parse(sessionStorage.getItem('currentRest'));
+                    
+                    // this.restaurants = requestData;
+                },
+                err => console.log(err)
+            );
     }
 
     // add reviews
@@ -52,7 +60,7 @@ export class AddComponent implements OnInit, OnDestroy {
         this.restaurantService.addReview(this.model)
         .subscribe(added => {
             if (added) {
-                this.router.navigate(['/main']);
+                // this.router.navigate(['']);
             } else {
                 this.messages = 'unable to add Review';
             }

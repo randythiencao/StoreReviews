@@ -26,7 +26,7 @@ export class RestaurantService {
 
 
     constructor(@Inject(Http) public http: Http) {
-        this.getRestaurantById(2); //CHANGE THIS TO NOT HARDCODED
+        // this.getRestaurantById(); //CHANGE THIS TO NOT HARDCODED
     }
 
     private static handleError(error: any) {
@@ -70,6 +70,20 @@ export class RestaurantService {
                 return false;
             }
         });
+    }
+
+
+    testGet(id : number) {
+        return this.http.get(environment.context +'restaurants/get/' + id)
+            .map((response) => {
+                // login successful if there's a jwt token in the response
+                let retUser = response.json();
+                // if (user && user.token) 
+                if (retUser){
+                    // store user details and jwt token in local storage to keep user logged in between page refreshes
+                    sessionStorage.setItem('currentRest', JSON.stringify(retUser));
+                }
+            });
     }
 
 }
