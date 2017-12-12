@@ -1,0 +1,88 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, enableProdMode } from '@angular/core';
+import { HttpModule } from '@angular/http';
+import { UIRouterModule } from '@uirouter/angular';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+import {AppComponent} from './app.component';
+import {NavComponent} from './nav/nav.component';
+
+import { appRoutes } from './routes';
+
+import { AppRoutingModule } from './app-routing.module';
+import { RegComponent } from './components/-reg/-reg.component';
+import { AuthService } from './service/auth.service';
+import { LoginComponent } from './components/-login/-login.component';
+import { MainComponent } from './components/main/main.component';
+import { AuthGuard } from './service/auth.guard';
+import { MainLayoutComponent } from './layouts/main-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout.component';
+import { AlertComponent } from './alerts/alert.component';
+import { AlertService } from './service/alert.service';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+
+import { AgmCoreModule } from '@agm/core';
+import { GeocodingApiService } from './service/geoapi.service';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangepassComponent } from './changepass/changepass.component';
+import { ControlPanelService } from './service/control-panel.service';
+import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
+import {InlineEditorModule} from '@qontu/ngx-inline-editor';
+import { IreviewedComponent } from './ireviewed/ireviewed.component';
+import { RestaurantService } from './service/restaurant.service';
+import { AddComponent } from './components/add/add.component';
+import { ChooseComponent } from './components/choose/choose.component';
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    HttpModule,
+    NgbModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAncGW5Fke707z9MxCTKZKT9f0w6QFhAcs'
+    }),
+    HttpClientModule,
+    FormsModule,
+    AppRoutingModule,
+    InlineEditorModule
+
+
+
+  ],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    LoginComponent,
+    RegComponent,
+    MainComponent,
+    MainLayoutComponent,
+    LoginLayoutComponent,
+    AlertComponent,
+    ProfileComponent,
+    ChangepassComponent,
+    ChangeinfoComponent,
+    IreviewedComponent,
+    AddComponent,
+    ChooseComponent
+    
+
+   ],
+  providers: [
+    AuthService,
+    AuthGuard,
+    AlertService,
+    ControlPanelService,
+    GeocodingApiService,
+    RestaurantService
+    
+   ],
+  bootstrap: [AppComponent ]
+})
+export class AppModule { }
+platformBrowserDynamic().bootstrapModule(AppModule);
