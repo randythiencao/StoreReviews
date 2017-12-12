@@ -16,6 +16,9 @@
             <td>{{restaurants.culture}}</td>
             <td *ngFor="let review of restaurants.reviews">{{review.review_id}}</td>
             <!-- <td>{{restaurants.reviews[0].review_id}}</td> -->
+
+
+            <!-- {{restaurants.reviews[0].review_id | json}} -->
         </thead>
         <tbody id="ers-table-body">
         </tbody>
@@ -35,7 +38,7 @@
             </div>
             <div class="modal-body">
 
-                <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+                <form #reviewForm="ngForm">
                     <div class="form-group">
                         <label for="review_id" class="col-form-label">Id: </label>
                         <input type="number" class="form-control" id="review_id"
@@ -62,7 +65,7 @@
                     </div>
                     <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Send message</button>
+                            <button type="button" class="btn btn-primary" (click)='onSubmit()' data-dismiss="modal" >Send message</button>
                     </div>
                 </form>
             </div>
