@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.UserDao;
+import com.revature.dao.UserDaoHibernate;
 import com.revature.entities.User;
 import com.revature.utilities.Password;
 
@@ -14,8 +15,8 @@ import com.revature.utilities.Password;
 public class CPService {
 	@Autowired
 	Password pHash;
-	@Autowired
-	UserDao ud;
+//	@Autowired
+	UserDao ud = new UserDaoHibernate();
 
 	public User changePass(User u) {
 		String tempPass = u.getPassword();

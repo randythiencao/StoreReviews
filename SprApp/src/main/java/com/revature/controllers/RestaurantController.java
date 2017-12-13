@@ -47,6 +47,7 @@ public class RestaurantController {
 	{
 		return rs.getAll();
 	}
+	
 	@GetMapping("getReviews/{restId}")
 	public ResponseEntity<?> getRestaurantsReviewsByRestaurantId(@PathVariable int restId) {
 		System.err.println("in getreviews/restid");
