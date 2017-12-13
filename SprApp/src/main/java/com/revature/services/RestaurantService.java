@@ -1,6 +1,8 @@
 package com.revature.services;
 
-import org.springframework.http.ResponseEntity;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.RestaurantDao;
@@ -22,7 +24,17 @@ public class RestaurantService {
 	}
 
 	public Review addReview(User user, Restaurant restaurant, Review review) {
-		System.out.println("user: " + user.toString() + "restaurant: " + restaurant.toString() + "review: " + review.toString());
+		System.out.println(
+				"user: " + user.toString() + "restaurant: " + restaurant.toString() + "review: " + review.toString());
 		return reviewDao.addReview(user, restaurant, review);
+	}
+
+	public List<Restaurant> getAll() {
+		// TODO Auto-generated method stub
+		return rd.getAllRestaurants();
+	}
+
+	public Set<Review> getRestaurantsReviewsByRestaurantId(int i) {
+		return rd.getRestaurantById(i).getReviews();
 	}
 }

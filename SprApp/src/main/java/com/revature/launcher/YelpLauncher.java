@@ -8,18 +8,14 @@
 * ---------------------------------------------------------------*/
 package com.revature.launcher;
 
-import org.hibernate.Session;
-
-
-import com.revature.entities.Review;
 import com.revature.dao.RestaurantDao;
 import com.revature.dao.RestaurantDaoHibernate;
 import com.revature.dao.ReviewDao;
 import com.revature.dao.ReviewDaoHibernate;
 import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoHibernate;
-import com.revature.entities.Restaurant;
-import com.revature.entities.User;
+import com.revature.services.RestaurantService;
+import com.revature.services.UserService;
 import com.revature.utilities.SessionUtil;
 
 public class YelpLauncher {
@@ -30,7 +26,8 @@ public class YelpLauncher {
 		UserDao ud = new UserDaoHibernate();
 		ReviewDao rd = new ReviewDaoHibernate();
 		RestaurantDao resd = new RestaurantDaoHibernate();
-		
+		UserService us = new UserService();
+		RestaurantService rs = new RestaurantService();
 		/*---------------------------------------------------------------*/
 		// User DAO methods
 		/*---------------------------------------------------------------*/
@@ -57,6 +54,9 @@ public class YelpLauncher {
 		/*---------------------------------------------------------------*/
 		// Get All Reviews Method
 //		System.out.println(rd.getAllReviews().toString());
+//		System.out.println(us.getUsersReviewsByUserId(1).toString());
+//		System.out.println(rs.getRestaurantsReviewsByRestaurantId(1).toString());
+		
 		
 		// Add a Review: This method adds to both the rest_rating and user_rating junction tables
 //		rd.addReview(ud.getUserById(1), resd.getRestaurantById(1), new Review()); // checked in db: it does add a review to review table

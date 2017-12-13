@@ -3,11 +3,13 @@ package com.revature.services;
 import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.UserDao;
+import com.revature.entities.Review;
 import com.revature.entities.User;
 import com.revature.utilities.Password;
 
@@ -39,25 +41,31 @@ public class UserService {
 	public User validateAccount(User user) {
 		System.out.println(user);
 		User u = ud.findByUsername(user.getUsername());
-		
+
 		if (u == null) {
 			return null;
-		} 
-		else {
+		} else {
 			byte[] salt = u.getSalt();
 			String newPass = pHash.getSecurePassword(user.getPassword(), salt);
 
 			if (newPass.equals(u.getPassword())) {
 				return u;
-			} 
-			else {
+			} else {
 				return null;
 			}
 		}
 	}
 
 	public List<User> getAllUsers() {
-		
+
 		return ud.getAllUsers();
 	}
+
+	public Set<Review> getUsersReviewsByUserId(int i) {
+		return ud.getUserById(i).getReviews();
+	}
+	
+    public User getUserById(int id) {
+        return ud.getUserById(id);
+    }
 }

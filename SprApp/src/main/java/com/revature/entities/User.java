@@ -38,9 +38,9 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String email;
-	@JsonProperty(access = Access.WRITE_ONLY)
+//	@JsonProperty(access = Access.WRITE_ONLY)
 	private byte[] salt;
-	private Date created;
+//	private Date created;
 
 
 	@Column(name = "role_id")
@@ -117,14 +117,14 @@ public class User {
 		this.roleId = roleId;
 	}
 
-
-	public Date getCreated() {
-		return created;
-	}
-
-	public void setCreated(Date created) {
-		this.created = created;
-	}
+//
+//	public Date getCreated() {
+//		return created;
+//	}
+//
+//	public void setCreated(Date created) {
+//		this.created = created;
+//	}
 	
 	public Set<Review> getReviews() {
 		return reviews;

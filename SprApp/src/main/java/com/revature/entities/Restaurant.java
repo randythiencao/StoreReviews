@@ -24,6 +24,7 @@ public class Restaurant {
 	private int restaruantId;
 	@Column(name="street_address")
 	private String streetAddress;
+	private String name;
 	private String city;
 	@Column(name="zip_code")
 	private String zipCode;
@@ -34,16 +35,17 @@ public class Restaurant {
 	@Column(name="rest_culture")
 	private String culture;
 	@ManyToMany(cascade = CascadeType.ALL)
-	private Set<Review> reviews = new HashSet<Review>(0);
+	private Set<Review> reviews = new HashSet<Review>(10);
 	public Restaurant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Restaurant(int restaruantId, String streetAddress, String city, String zipCode, byte[] picture, int ownerId,
-			String culture, Set<Review> reviews) {
+	public Restaurant(int restaruantId, String streetAddress, String name, String city, String zipCode, byte[] picture,
+			int ownerId, String culture, Set<Review> reviews) {
 		super();
 		this.restaruantId = restaruantId;
 		this.streetAddress = streetAddress;
+		this.name = name;
 		this.city = city;
 		this.zipCode = zipCode;
 		this.picture = picture;
@@ -62,6 +64,12 @@ public class Restaurant {
 	}
 	public void setStreetAddress(String streetAddress) {
 		this.streetAddress = streetAddress;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getCity() {
 		return city;
@@ -105,6 +113,7 @@ public class Restaurant {
 		int result = 1;
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		result = prime * result + ((culture == null) ? 0 : culture.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ownerId;
 		result = prime * result + Arrays.hashCode(picture);
 		result = prime * result + restaruantId;
@@ -132,6 +141,11 @@ public class Restaurant {
 				return false;
 		} else if (!culture.equals(other.culture))
 			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
 		if (ownerId != other.ownerId)
 			return false;
 		if (!Arrays.equals(picture, other.picture))
@@ -157,10 +171,9 @@ public class Restaurant {
 	}
 	@Override
 	public String toString() {
-		return "Restaurant [restaruantId=" + restaruantId + ", streetAddress=" + streetAddress + ", city=" + city
-				+ ", zipCode=" + zipCode + ", picture=" + Arrays.toString(picture) + ", ownerId=" + ownerId
-				+ ", culture=" + culture + ", reviews=" + reviews + "]";
+		return "Restaurant [restaruantId=" + restaruantId + ", streetAddress=" + streetAddress + ", name=" + name
+				+ ", city=" + city + ", zipCode=" + zipCode + ", picture=" + Arrays.toString(picture) + ", ownerId="
+				+ ownerId + ", culture=" + culture + ", reviews=" + reviews + "]";
 	}
-	
 	
 }

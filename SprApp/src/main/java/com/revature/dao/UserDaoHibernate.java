@@ -37,6 +37,7 @@ public class UserDaoHibernate implements UserDao {
 	}
 
 	public User addUser(User u) {
+		System.out.println(u);
 		Session se = su.getSession();
 		se.beginTransaction();
 		se.save(u);

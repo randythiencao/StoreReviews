@@ -2,17 +2,20 @@ package com.revature.controllers;
 
 
 
-import java.util.Date;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.entities.Review;
 import com.revature.entities.User;
 import com.revature.services.UserService;
 
@@ -42,10 +45,15 @@ public class UserController {
 
 	@PostMapping("register")
 	public ResponseEntity<?> regUser(@RequestBody User uReg) {
-		uReg.setCreated(new Date());
+//		uReg.setCreated(new Date());
 		us.addUser(uReg);
 		return new ResponseEntity<>(uReg, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("getReviews/{userId}")
+	public Set<Review> getUsersReviewsByUserId(@PathVariable int userId) {
+		return us.getUsersReviewsByUserId(userId);
 	}
 
 	// @GetMapping
