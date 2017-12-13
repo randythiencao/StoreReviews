@@ -31,6 +31,7 @@ export class AddComponent implements OnInit, OnDestroy {
             this.id = +params['id'];
         });
         this.getData();
+        // console.log(this.restaurants.reviews);
         this.model = new Review();
     }
 

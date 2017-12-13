@@ -2,7 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { User } from '../beans/User';
-import { GeocodingApiService } from '../../service/geoapi.service';
+
 import {
   BrowserModule
 } from '@angular/platform-browser';
@@ -11,6 +11,8 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { Restaurant } from '../beans/Restaurant';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-main',
@@ -32,40 +34,28 @@ export class MainComponent implements OnInit {
     {
       lat: 28.0720588,
       lng: -82.4284711,
-      label: 'B',
+      label: '1',
       draggable: false
     },
     {
       lat: 28.0622991,
       lng: -82.4090294,
-      label: 'C',
+      label: '2',
       draggable: true
     }
   ]
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+  private router: Router) { }
 
   ngOnInit() {
     this.restaurants = JSON.parse(sessionStorage.getItem('allRestaurants'));
-    this.populateMap();
-  }
 
- 
-  populateMap() {
-    for (let rest of this.restaurants)
-    {
-      console.log(rest)
-      this.markers.push({
-        lat: 28.0807637,
-        lng: -82.4305818,
-        label: 't',
-        draggable: false
-      });
-    }
   }
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+    console.log(label);
+    this.router.navigate(['/add', +label]);
   }
 
   mapClicked($event: any) {

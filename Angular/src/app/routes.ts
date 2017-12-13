@@ -11,6 +11,8 @@ import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
 import { IreviewedComponent } from './ireviewed/ireviewed.component';
 import { ChooseComponent } from './components/choose/choose.component';
 import { AddComponent } from './components/add/add.component';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
 
 
 export const appRoutes: Routes = [
@@ -28,10 +30,6 @@ export const appRoutes: Routes = [
           {
             path: '',
             component: ChooseComponent
-          },
-          {
-            path:'add/:id',
-            component: AddComponent
           }
 
         ]
@@ -71,6 +69,14 @@ export const appRoutes: Routes = [
             component: IreviewedComponent
           }
         ]
+      },
+      {
+        path: 'restaurants',
+        component: RestaurantsComponent
+      },
+      {
+        path: 'add/:id',
+        component: SelectedRestaurantComponent
       }
     ]
   },

@@ -38,6 +38,8 @@ import { RestaurantService } from './service/restaurant.service';
 import { AddComponent } from './components/add/add.component';
 import { ChooseComponent } from './components/choose/choose.component';
 import { RestService } from './service/rest-service.service';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
 
 @NgModule({
   imports: [
@@ -70,7 +72,9 @@ import { RestService } from './service/rest-service.service';
     ChangeinfoComponent,
     IreviewedComponent,
     AddComponent,
-    ChooseComponent
+    ChooseComponent,
+    RestaurantsComponent,
+    SelectedRestaurantComponent
     
 
    ],

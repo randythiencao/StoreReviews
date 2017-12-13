@@ -2,7 +2,7 @@ import { Review } from './Review';
 
 export class Restaurant {
 
-    restaurantId: number;
+    restaruantId: number;
     streetAddress: string;
     city: string;
     zipCode: string;
@@ -14,7 +14,7 @@ export class Restaurant {
     }
 
     public static isNull(rest: Restaurant): boolean {
-        return rest.restaurantId === null;
+        return rest.restaruantId === null;
     }
 
 }
