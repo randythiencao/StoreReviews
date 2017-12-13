@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService } from '../service/restaurant.service';
 import { Restaurant } from '../components/beans/Restaurant';
 import { Router } from '@angular/router';
+import { RestService } from '../service/rest-service.service';
 
 @Component({
   selector: 'app-restaurants',
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RestaurantsComponent implements OnInit {
 
-  constructor(private restService: RestaurantService,
+  constructor(private restService: RestService,
     private router: Router) { }
 
   allRestaurants: Array<Restaurant>;

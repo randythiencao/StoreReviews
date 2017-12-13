@@ -57,7 +57,7 @@ export class RestService {
 
   addReview(review: Review, uId: number, rId: number) {
     console.log('called restService addReview');
-    return this.http.post(environment.context + 'restaurants/addReview' + uId +'/' +rId, review)
+    return this.http.post(environment.context + 'restaurants/addReview/' + uId +'/' +rId, review)
     .map(resp => resp.json())
     .map((currentReview: Review) => {
         if (!Review.isNull(currentReview)) {

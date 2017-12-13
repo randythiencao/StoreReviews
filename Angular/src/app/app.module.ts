@@ -34,12 +34,12 @@ import { ControlPanelService } from './service/control-panel.service';
 import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 import { IreviewedComponent } from './ireviewed/ireviewed.component';
-import { RestaurantService } from './service/restaurant.service';
-import { AddComponent } from './components/add/add.component';
-import { ChooseComponent } from './components/choose/choose.component';
+
 import { RestService } from './service/rest-service.service';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
+import { RestResolve } from './service/rest.resolve';
+import { UserResolve } from './service/user.resolve';
 
 @NgModule({
   imports: [
@@ -71,8 +71,6 @@ import { SelectedRestaurantComponent } from './selected-restaurant/selected-rest
     ChangepassComponent,
     ChangeinfoComponent,
     IreviewedComponent,
-    AddComponent,
-    ChooseComponent,
     RestaurantsComponent,
     SelectedRestaurantComponent
     
@@ -85,7 +83,8 @@ import { SelectedRestaurantComponent } from './selected-restaurant/selected-rest
     ControlPanelService,
     GeocodingApiService,
     RestService,
-    RestaurantService
+    RestResolve,
+    UserResolve
     
    ],
   bootstrap: [AppComponent ]

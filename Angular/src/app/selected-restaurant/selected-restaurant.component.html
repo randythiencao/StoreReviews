@@ -2,8 +2,15 @@
     <div class="row">
         <div class="col-1"></div>
         <div class="col-10 mx-auto text-center">
-            <h3>Welcome to {{restaurant.restaruantId}}</h3>
-            Located at: {{restaurant.streetAddress}}
+            <h3>Welcome to {{restaurant.name}}</h3>
+            Located at {{restaurant.streetAddress}}, {{restaurant.city}},{{restaurant.state}}, {{restaurant.zipCode}}
+            
+            <div class="container">
+                <img src="https://cdn.vuukle.com/widgets/static/media/smile-happy.svg">
+            </div>
+        
+        
+        
         </div>
         <div class="col-1"></div>
     </div>

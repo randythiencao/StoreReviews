@@ -9,10 +9,11 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ChangepassComponent } from './changepass/changepass.component';
 import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
 import { IreviewedComponent } from './ireviewed/ireviewed.component';
-import { ChooseComponent } from './components/choose/choose.component';
-import { AddComponent } from './components/add/add.component';
+
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
+import { RestResolve } from './service/rest.resolve';
+import { UserResolve } from './service/user.resolve';
 
 
 export const appRoutes: Routes = [
@@ -26,13 +27,13 @@ export const appRoutes: Routes = [
       {
         path: '',
         component: MainComponent,
-        children: [
-          {
-            path: '',
-            component: ChooseComponent
-          }
+        // children: [
+        //   {
+        //     path: '',
+        //     component: ChooseComponent
+        //   }
 
-        ]
+        // ]
       }
     ]
   },
@@ -66,7 +67,10 @@ export const appRoutes: Routes = [
           },
           {
             path: 'ireviewed',
-            component: IreviewedComponent
+            component: IreviewedComponent,
+            resolve: {
+              reviews: UserResolve
+            }
           }
         ]
       },
@@ -76,7 +80,10 @@ export const appRoutes: Routes = [
       },
       {
         path: 'add/:id',
-        component: SelectedRestaurantComponent
+        component: SelectedRestaurantComponent,
+        resolve: {
+          restaurant: RestResolve
+        }
       }
     ]
   },
