@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --env=prod",
+    "build": "ng build --prod --env=prod --base-href=/SprApp --deploy-url=/SprApp/static",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -20,17 +20,16 @@
     "@angular/core": "^4.4.6",
     "@angular/forms": "^4.4.6",
     "@angular/http": "^4.4.6",
-    "@angular/material": "^5.0.1",
     "@angular/platform-browser": "^4.4.6",
     "@angular/platform-browser-dynamic": "^4.4.6",
     "@angular/router": "^4.4.6",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-beta.5",
     "@qontu/ngx-inline-editor": "^0.2.0-alpha.12",
-    "@uirouter/angular": "^1.0.0-rc.1",
     "core-js": "^2.5.3",
     "ngx-click-to-edit": "0.0.7",
     "rxjs": "^5.5.5",
-    "zone.js": "^0.8.14"
+    "zone.js": "^0.8.14",
+    "typescript": "2.2.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.1",

@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, enableProdMode } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { UIRouterModule } from '@uirouter/angular';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -42,12 +40,12 @@ import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
 
 
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAncGW5Fke707z9MxCTKZKT9f0w6QFhAcs'
     }),
@@ -55,9 +53,6 @@ import { UserResolve } from './service/user.resolve';
     FormsModule,
     AppRoutingModule,
     InlineEditorModule
-
-
-
   ],
   declarations: [
     AppComponent,
@@ -74,7 +69,6 @@ import { UserResolve } from './service/user.resolve';
     IreviewedComponent,
     RestaurantsComponent,
     SelectedRestaurantComponent
-    
 
    ],
   providers: [

@@ -26,6 +26,7 @@ public class Restaurant {
 	private String streetAddress;
 	private String name;
 	private String city;
+	private String state;
 	@Column(name="zip_code")
 	private String zipCode;
 	@Column(name="home_picture")
@@ -40,13 +41,14 @@ public class Restaurant {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Restaurant(int restaruantId, String streetAddress, String name, String city, String zipCode, byte[] picture,
-			int ownerId, String culture, Set<Review> reviews) {
+	public Restaurant(int restaruantId, String streetAddress, String name, String city, String state, String zipCode,
+			byte[] picture, int ownerId, String culture, Set<Review> reviews) {
 		super();
 		this.restaruantId = restaruantId;
 		this.streetAddress = streetAddress;
 		this.name = name;
 		this.city = city;
+		this.state = state;
 		this.zipCode = zipCode;
 		this.picture = picture;
 		this.ownerId = ownerId;
@@ -76,6 +78,12 @@ public class Restaurant {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	public String getZipCode() {
 		return zipCode;
@@ -118,6 +126,7 @@ public class Restaurant {
 		result = prime * result + Arrays.hashCode(picture);
 		result = prime * result + restaruantId;
 		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + ((streetAddress == null) ? 0 : streetAddress.hashCode());
 		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
@@ -157,6 +166,11 @@ public class Restaurant {
 				return false;
 		} else if (!reviews.equals(other.reviews))
 			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
+			return false;
 		if (streetAddress == null) {
 			if (other.streetAddress != null)
 				return false;
@@ -172,8 +186,10 @@ public class Restaurant {
 	@Override
 	public String toString() {
 		return "Restaurant [restaruantId=" + restaruantId + ", streetAddress=" + streetAddress + ", name=" + name
-				+ ", city=" + city + ", zipCode=" + zipCode + ", picture=" + Arrays.toString(picture) + ", ownerId="
-				+ ownerId + ", culture=" + culture + ", reviews=" + reviews + "]";
+				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", picture="
+				+ Arrays.toString(picture) + ", ownerId=" + ownerId + ", culture=" + culture + ", reviews=" + reviews
+				+ "]";
 	}
+	
 	
 }

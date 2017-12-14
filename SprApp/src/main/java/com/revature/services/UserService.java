@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.dao.UserDao;
+import com.revature.dao.UserDaoHibernate;
 import com.revature.entities.Review;
 import com.revature.entities.User;
 import com.revature.utilities.Password;
@@ -19,7 +20,7 @@ public class UserService {
 	@Autowired
 	Password pHash;
 	@Autowired
-	UserDao ud;
+	UserDao ud;// = new UserDaoHibernate();
 
 	public void addUser(User u) {
 		String tempPass = u.getPassword();
@@ -66,6 +67,7 @@ public class UserService {
 	}
 	
     public User getUserById(int id) {
+    	System.out.println("trying to get user " + id);
         return ud.getUserById(id);
     }
 }

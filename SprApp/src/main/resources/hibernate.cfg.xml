@@ -22,7 +22,7 @@
  	    <property name="hibernate.connection.url">jdbc:oracle:thin:@orcl.ccpzelfz4uew.us-east-2.rds.amazonaws.com:1521:ORCL</property>
 		<property name="hibernate.connection.username">ers</property>
 	    <property name="hibernate.connection.password">pass</property>
-        <property name="hibernate.connection.pool_size">35</property>
+        <property name="hibernate.connection.pool_size">10</property>
          
         
         <!-- The property that must not be used -->

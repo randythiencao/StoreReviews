@@ -27,7 +27,7 @@ public class RestaurantController {
 	RestaurantService rs;
 	
 	@Autowired
-	UserService us;
+	UserService us;// = new UserService();
 
 	@GetMapping("get/{id}")
 	public Restaurant findById(@PathVariable int id) {
@@ -36,9 +36,11 @@ public class RestaurantController {
 	}
 	
 	// Instead of new user and new restaurant I need to get the user id from the session and get the rest id from the json
-    @PostMapping("addReview/{restId}/{userId}")
+    @PostMapping("addReview/{userId}/{restId}")
     public Review AddReview(@RequestBody Review review, @PathVariable int userId, @PathVariable int restId) {
         System.out.println("attempting to add review: " + review.toString());
+        System.out.println("got userId: " + userId);
+        System.out.println("got restId: "+ restId);
         return rs.addReview(us.getUserById(userId), rs.getRestaurantById(restId), review);
     }
 	

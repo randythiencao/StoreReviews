@@ -4,12 +4,14 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import com.revature.entities.Restaurant;
 import com.revature.entities.Review;
 import com.revature.entities.User;
 import com.revature.utilities.SessionUtil;
 
+@Repository
 public class ReviewDaoHibernate implements ReviewDao {
 	private static SessionUtil su = SessionUtil.getSessionUtil();
 

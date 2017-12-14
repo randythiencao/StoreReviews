@@ -4,6 +4,7 @@ export class Restaurant {
 
     restaruantId: number;
     streetAddress: string;
+    name: string;
     city: string;
     state: string;
     zipCode: string;
