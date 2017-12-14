@@ -41,6 +41,7 @@ import { SelectedRestaurantComponent } from './selected-restaurant/selected-rest
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
 
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -90,4 +91,4 @@ import { UserResolve } from './service/user.resolve';
   bootstrap: [AppComponent ]
 })
 export class AppModule { }
-platformBrowserDynamic().bootstrapModule(AppModule);
+// platformBrowserDynamic().bootstrapModule(AppModule);

@@ -47,6 +47,13 @@ export class SelectedRestaurantComponent implements OnInit {
   getReview() {
     this.restService.getRestReview(this.id).subscribe(data => {
       this.reviews = JSON.parse(sessionStorage.getItem('restReviews'));
+      this.reviews.sort(function(a, b){
+        if ( a.review_id < b.review_id )
+            return 1;
+        if ( a.review_id > b.review_id )
+            return -1;
+        return 0;
+    });
     });
 
   }

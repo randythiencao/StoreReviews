@@ -21,8 +21,8 @@
 <div class="container">
     {{restaurant | json}}
 </div>
-<div class="container">
-    {{reviews | json}}
+<div class="container" *ngFor = "let review of reviews">
+    {{review | json}}
 
 </div>
 
@@ -48,7 +48,7 @@
                     </div> -->
                     <div class="form-group">
                         <label for="rating" class="col-form-label">Rating: </label>
-                        <input type="number" class="form-control" id="rating" [(ngModel)]="model.rating" #rating="ngModel" name="rating" pInputText>
+                        <input type="number" class="form-control" id="rating" [(ngModel)]="model.rating" #rating="ngModel" name="rating" min="1" max="5" pInputText>
                     </div>
                     <div class="form-group">
                         <label for="picture" class="col-form-label">Picture: </label>
