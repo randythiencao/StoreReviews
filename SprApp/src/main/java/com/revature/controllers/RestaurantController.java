@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Restaurant;
 import com.revature.entities.Review;
+import com.revature.entities.User;
+import com.revature.entities.UserReviewRest;
 import com.revature.services.RestaurantService;
 import com.revature.services.UserService;
 
@@ -50,9 +53,15 @@ public class RestaurantController {
 		return rs.getAll();
 	}
 	
-	@GetMapping("getReviews/{restId}")
-	public ResponseEntity<?> getRestaurantsReviewsByRestaurantId(@PathVariable int restId) {
+	@PostMapping("getReviews/{restId}")
+	public ResponseEntity<?> getRestaurantsReviewsByRestaurantId(@RequestBody String restName, @PathVariable int restId) {
 		System.err.println("in getreviews/restid");
-		return new ResponseEntity<>(rs.getRestaurantsReviewsByRestaurantId(restId), HttpStatus.OK);
+		System.out.println(restName);
+		
+		List<Review> restReviews = new ArrayList<>(rs.getRestaurantsReviewsByRestaurantId(restId));
+		List<User> allUsers = us.getAllUsers();
+		List<UserReviewRest> uRs = rs.constructUserRevRest(restId, restName, restReviews, allUsers);
+		System.out.println(uRs);
+		return new ResponseEntity<>(uRs, HttpStatus.OK);
 	}
 }
