@@ -15,6 +15,7 @@ import { SelectedRestaurantComponent } from './selected-restaurant/selected-rest
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
 import { SomeProfileComponent } from './some-profile/some-profile.component';
+import { MapResolve } from './service/map.resolve';
 
 
 export const appRoutes: Routes = [
@@ -52,7 +53,11 @@ export const appRoutes: Routes = [
     path: 'register', component: RegComponent
   },
   {
-    path: '', component: MainLayoutComponent,
+    path: '', 
+    component: MainLayoutComponent,
+    resolve: {
+      markers: MapResolve
+    },
     children: [
       {
         path: 'profile',
@@ -72,27 +77,30 @@ export const appRoutes: Routes = [
             resolve: {
               reviews: UserResolve
             }
+          },
+          {
+            path: ':username/:userId',
+            component: SomeProfileComponent,
+            resolve: {
+              reviews: UserResolve
+            }
           }
         ]
       },
       {
         path: 'restaurants',
-        component: RestaurantsComponent
-      },
-      {
-        path: 'add/:id',
-        component: SelectedRestaurantComponent,
-        resolve: {
-          restaurant: RestResolve
-        }
-      },
-      {
-        path: ':name/:id',
-        component: SomeProfileComponent,
-        resolve: {
-          reviews: UserResolve
-        }
+        component: RestaurantsComponent,
+        children: [
+          {
+            path: 'add/:id',
+            component: SelectedRestaurantComponent,
+            resolve: {
+              restaurant: RestResolve
+            }
+          }
+        ]
       }
+      
     ]
   },
 

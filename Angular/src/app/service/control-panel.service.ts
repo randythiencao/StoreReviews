@@ -11,7 +11,21 @@ export class ControlPanelService {
 
   updateInfo(user: User) {
     console.log(user);
-    return this.http.post(environment.context + 'cpanel/update', user)
+    return this.http.post(environment.context + 'cpanel/update/info', user)
+      .map((response: Response) => {
+        // login successful if there's a jwt token in the response
+        let retUser = response.json();
+        // if (user && user.token) 
+        if (retUser) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          sessionStorage.setItem('currentUser', JSON.stringify(retUser));
+        }
+      });
+  }
+
+  updatePass(user: User) {
+    console.log(user);
+    return this.http.post(environment.context + 'cpanel/update/pass', user)
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         let retUser = response.json();
@@ -61,6 +75,23 @@ export class ControlPanelService {
       });
   }
 
+
+  getReviewByUserId(someId: number, username: String) {
+    console.log(environment.context + 'cpanel/allUserReviews/'+someId);
+    return this.http.post(environment.context + 'cpanel/allUserReviews/' + someId, username)
+      .map(
+      (response: Response) => {
+
+        let retUser = response.json();
+        console.log('review for '+username+' is ' + JSON.stringify(retUser));
+        if (retUser) {
+          sessionStorage.setItem('someUserReviews', JSON.stringify(retUser));
+        }
+      },
+      (err) => {
+        console.log(err);
+      });
+  }
   
 
 }

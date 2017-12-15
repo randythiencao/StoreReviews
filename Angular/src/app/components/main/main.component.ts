@@ -13,6 +13,7 @@ import {
 import { Restaurant } from '../beans/Restaurant';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { MapService } from '../../service/map.service';
 
 @Component({
   selector: 'app-main',
@@ -22,7 +23,7 @@ import { Router } from '@angular/router';
 export class MainComponent implements OnInit {
 
   // google maps zoom level
-  zoom: number = 8;
+  zoom: number = 12;
 
   restaurants: Array<Restaurant>;
   // initial center position for the map
@@ -30,29 +31,23 @@ export class MainComponent implements OnInit {
   lng: number = -82.4284711;
 
 
-  markers: marker[] = [
-    {
-      lat: 28.0720588,
-      lng: -82.4284711,
-      label: '1',
-      draggable: false
-    },
-    {
-      lat: 28.0622991,
-      lng: -82.4090294,
-      label: '2',
-      draggable: true
-    }
-  ]
+  markers: Array<marker>;
 
   constructor(private http: Http,
-  private router: Router) { }
+    private router: Router,
+    private mapService: MapService) { }
 
   ngOnInit() {
     this.restaurants = JSON.parse(sessionStorage.getItem('allRestaurants'));
+    this.getMarkers();
 
   }
 
+
+  getMarkers() {
+    this.mapService.getRestMarkers().subscribe(resp => {console.log(resp)});
+
+  }
   clickedMarker(label: string, index: number) {
     console.log(label);
     this.router.navigate(['/add', +label]);

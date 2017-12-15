@@ -76,9 +76,14 @@ export class SelectedRestaurantComponent implements OnInit {
   }
 
   goToUser(userId: number,username: String) {
-    this.router.navigate(['/'+username+'/'+userId]);
+    console.log('supplied '+userId+' '+username)
+    this.router.navigate(['/profile/',username,userId]);
   }
 
+  getUrl()
+  {
+    return "url("+this.restaurant.picture+")";
+  }
   //   onSubmit(): void {
   //     console.log('called the submit form with json obj');
   //     this.restaurantService.addReview(this.model)

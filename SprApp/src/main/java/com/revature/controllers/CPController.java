@@ -33,14 +33,20 @@ public class CPController {
 	@Autowired
 	RestaurantService rs;
 
-	@PostMapping("update")
-	public ResponseEntity<?> updateUser(@RequestBody User u) {
+	@PostMapping("update/pass")
+	public ResponseEntity<?> updateUserPass(@RequestBody User u) {
 		System.out.println("updadting");
 		return new ResponseEntity<>(cps.changePass(u), HttpStatus.OK);
+	}
+	@PostMapping("update/info")
+	public ResponseEntity<?> updateUserInfo(@RequestBody User u) {
+		System.out.println("updadting");
+		return new ResponseEntity<>(cps.changeInfo(u), HttpStatus.OK);
 	}
 
 	@PostMapping("allUserReviews/{id}")
 	public ResponseEntity<?> getAllUserReviews(@PathVariable int id, @RequestBody String username) {
+		System.out.println("getting reviews for "+ username+" "+id);
 		List<Review> userReviews = new ArrayList<>(us.getUsersReviewsByUserId(id));
 		List<Restaurant> allRest = rs.getAll();
 		List<UserReviewRest> uRs = cps.constructUserRevRest(id, username, userReviews, allRest);

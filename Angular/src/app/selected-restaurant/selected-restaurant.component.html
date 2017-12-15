@@ -1,24 +1,36 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<div class="container">
+<div class="panel panel-default parallax" style="background-color: black; height: 92vh;" [ngStyle]="{'background-image': getUrl()}">
+
     <div class="row">
         <div class="col-1"></div>
-        <div class="col-10 mx-auto text-center" style="background-image: url(http://i54.tinypic.com/4zuxif.jpg)">
-            <h3>Welcome to {{restaurant.name}}</h3>
-            Located at {{restaurant.streetAddress}}, {{restaurant.city}},{{restaurant.state}}, {{restaurant.zipCode}}
+        <div class="col-10 mx-auto text-center">
 
-            <div class="container">
-                <img src="https://cdn.vuukle.com/widgets/static/media/smile-happy.svg">
+            <div class="card titleCard mx-auto text-center">
+                <div class="card-block">
+                    <h3 class="card-title">Welcome to</h3>
+                    <h2 class="card-title" style="color:rgb(88, 0, 84)">{{restaurant.name}}</h2>
+                </div>
+                <div class="card-footer text-muted">
+                    Located at {{restaurant.streetAddress}}, {{restaurant.city}},{{restaurant.state}}, {{restaurant.zipCode}}
+                    <br>
+                    <div class="container text-right ">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Review</button>
+                    </div>
+                </div>
             </div>
-            <div class="container text-right">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add Review</button>
-            </div>
+            <!-- <h3>Welcome to {{restaurant.name}}</h3>
+            Located at {{restaurant.streetAddress}}, {{restaurant.city}},{{restaurant.state}}, {{restaurant.zipCode}} -->
+
+
             <br>
 
-            <div class="card" style="margin-bottom:30px;" *ngFor="let review of reviews">
+            <div class="card mx-auto text-center restRev" *ngFor="let review of reviews">
                 <!--text-center"-->
                 <div class="card-header">
-                    <strong><a (click)="goToUser(review.userId, review.username)"> {{review.username}} </a></strong>said: {{review.review_id}}
+                    <strong>
+                        <a (click)="goToUser(review.userId, review.username)"> {{review.username}} </a>
+                    </strong>said: {{review.review_id}}
                 </div>
                 <div class="card-block">
                     <p class="card-title">
@@ -30,7 +42,7 @@
                     <p class="card-text">{{review.comment}}</p>
                     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                 </div>
-                <div class="card-footer text-muted">
+                <div class="card-footer" style="color:rgba(4, 0, 255, 0.614)">
                     About {{review.restName}}
                 </div>
             </div>
@@ -41,11 +53,6 @@
     </div>
 </div>
 
-
-<div class="container" *ngFor="let review of reviews">
-    {{review | json}}
-
-</div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

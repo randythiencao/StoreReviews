@@ -39,6 +39,8 @@ import { SelectedRestaurantComponent } from './selected-restaurant/selected-rest
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
 import { SomeProfileComponent } from './some-profile/some-profile.component';
+import { MapService } from './service/map.service';
+import { MapResolve } from './service/map.resolve';
 
 
 
@@ -80,8 +82,10 @@ import { SomeProfileComponent } from './some-profile/some-profile.component';
     ControlPanelService,
     GeocodingApiService,
     RestService,
+    MapService,
     RestResolve,
-    UserResolve
+    UserResolve,
+    MapResolve
     
    ],
   bootstrap: [AppComponent ]

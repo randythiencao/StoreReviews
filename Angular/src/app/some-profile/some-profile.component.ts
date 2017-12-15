@@ -13,7 +13,6 @@ import { User } from '../components/beans/User';
 export class SomeProfileComponent implements OnInit {
 
   reviews: Array<UserRevRest>;
-  sub: any;
   id: number
   username: String;
 
@@ -21,22 +20,30 @@ export class SomeProfileComponent implements OnInit {
   private cpService : ControlPanelService) { }
 
   ngOnInit() {
-    this.sub = this.activatedRouter.params.subscribe(params => {
-      this.id = +params['id'];
-    });
+    // this.sub = this.activatedRouter.params.subscribe(params => {
+    //   this.id = +params['id'];
+    // });
+
+    this.id = +this.activatedRouter.snapshot.params['userId'];
+    this.username = this.activatedRouter.snapshot.params['username'];
 
     console.log(this.username);
     this.getReview();
   }
 
   getReview() {
-    this.cpService.getReviewByUser().subscribe(data => {
-      this.reviews = JSON.parse(sessionStorage.getItem('userReviews'));
+    this.cpService.getReviewByUserId(this.id, this.username).subscribe(data => {
+      console.log(sessionStorage.getItem('someUserReviews'));
+      this.reviews = JSON.parse(sessionStorage.getItem('someUserReviews'));
       this.reviews.sort(function (obj1, obj2) {
         // Ascending: first age less than the previous
         return obj2.review_id - obj1.review_id;
       });
     })
+  }
+
+  goToRest(id: number) {
+    this.router.navigate(['/add', id]);
   }
 
 

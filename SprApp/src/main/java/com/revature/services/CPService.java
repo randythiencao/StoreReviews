@@ -40,7 +40,26 @@ public class CPService {
 			return null;
 		}
 	}
+	
+	public User changeInfo(User u) {
+		User temp = ud.getUserById(u.getUserId());
+		temp.setFirstName(u.getFirstName());
+		temp.setLastName(u.getLastName());
+		temp.setEmail(u.getEmail());
+		temp.setPassword(u.getPassword());
+		temp.setSalt(u.getSalt());
+		System.out.println(u);
+		try {
 
+			ud.updateUser(u);
+			return u;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public List<UserReviewRest> constructUserRevRest(int userId, String username, List<Review> userReviews,
 			List<Restaurant> allRest) {
 
@@ -66,5 +85,7 @@ public class CPService {
 
 		return userRevRest;
 	}
+
+
 
 }
