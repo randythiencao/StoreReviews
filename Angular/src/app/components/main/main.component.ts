@@ -24,7 +24,7 @@ import { Marker } from '@ngui/map/dist/directives/marker';
 export class MainComponent {
 
   public positions= [];
-
+restaurant: Restaurant;
     constructor() {
       this.positions = this.getRandomMarkers();
   
@@ -39,7 +39,7 @@ export class MainComponent {
       let randomLat: number, randomLng: number;
   
       let positions = [];
-      for (let i = 0 ; i < 9; i++) {
+      for (let i = 0 ; i < 6; i++) {
         randomLat = Math.random() * (43.7399 - 43.7300) + 28.0584618;
         randomLng = Math.random() * (-79.7600 - -79.7699) + -82.4095894;
         positions.push([randomLat, randomLng]);
@@ -54,9 +54,12 @@ export class MainComponent {
         });
     }
 
-    markerClicked(target: Marker)
+    markerClicked(id: number)
     {
-      console.log(target);
+      let restaurants = JSON.parse(sessionStorage.getItem('allRestaurants'));
+      console.log(restaurants);
+      console.log(restaurants[id]);
+      
     }
 }
 // just an interface for type safety.

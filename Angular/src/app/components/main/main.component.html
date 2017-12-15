@@ -14,7 +14,7 @@
 
 
 <ngui-map zoom="15" center="28.0584618,-82.4095894" (mapReady$)="onMapReady($event)">
-	<marker *ngFor="let pos of positions" [position]="pos" (click)="markerClicked($event)"></marker>
+	<marker *ngFor="let pos of positions; let i = index" [position]="pos" (click)="markerClicked(i)"></marker>
   </ngui-map>
 
   
