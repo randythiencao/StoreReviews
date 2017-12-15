@@ -38,6 +38,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
+import { SomeProfileComponent } from './some-profile/some-profile.component';
 
 
 
@@ -68,7 +69,8 @@ import { UserResolve } from './service/user.resolve';
     ChangeinfoComponent,
     IreviewedComponent,
     RestaurantsComponent,
-    SelectedRestaurantComponent
+    SelectedRestaurantComponent,
+    SomeProfileComponent
 
    ],
   providers: [
@@ -85,4 +87,4 @@ import { UserResolve } from './service/user.resolve';
   bootstrap: [AppComponent ]
 })
 export class AppModule { }
-// platformBrowserDynamic().bootstrapModule(AppModule);
+platformBrowserDynamic().bootstrapModule(AppModule);

@@ -14,6 +14,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
+import { SomeProfileComponent } from './some-profile/some-profile.component';
 
 
 export const appRoutes: Routes = [
@@ -83,6 +84,13 @@ export const appRoutes: Routes = [
         component: SelectedRestaurantComponent,
         resolve: {
           restaurant: RestResolve
+        }
+      },
+      {
+        path: ':id',
+        component: SomeProfileComponent,
+        resolve: {
+          reviews: UserResolve
         }
       }
     ]

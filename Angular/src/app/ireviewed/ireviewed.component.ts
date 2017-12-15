@@ -3,6 +3,7 @@ import { User } from '../components/beans/User';
 import { ControlPanelService } from '../service/control-panel.service';
 import { Review } from '../components/beans/Review';
 import { UserRevRest } from '../components/beans/UserRevRest';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ireviewed',
@@ -15,7 +16,8 @@ export class IreviewedComponent implements OnInit {
   reviews: Array<UserRevRest>;
   // allReviews: Array<Review>;
 
-  constructor(private cpService: ControlPanelService) { }
+  constructor(private cpService: ControlPanelService,
+    private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(sessionStorage.getItem('currentUser'));
@@ -31,6 +33,10 @@ export class IreviewedComponent implements OnInit {
         return obj2.review_id - obj1.review_id;
       });
     })
+  }
+
+  goToRest(id: number) {
+    this.router.navigate(['/add', id]);
   }
 
 
