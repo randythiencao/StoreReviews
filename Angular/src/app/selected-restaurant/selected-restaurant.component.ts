@@ -5,8 +5,6 @@ import { Restaurant } from '../components/beans/Restaurant';
 import { Review } from '../components/beans/Review';
 import { Response } from '@angular/http';
 import { User } from '../components/beans/User';
-import { Router } from '@angular/router';
-import { UserRevRest } from '../components/beans/UserRevRest';
 
 @Component({
   selector: 'app-selected-restaurant',
@@ -21,8 +19,8 @@ export class SelectedRestaurantComponent implements OnInit {
   userId: number;
   restaurant = new Restaurant();
   model = new Review();
-  reviews: Array<UserRevRest>;
-  constructor(private route: ActivatedRoute, private restService: RestService, private router: Router) { }
+  reviews: Array<Review>;
+  constructor(private route: ActivatedRoute, private restService: RestService) { }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
@@ -49,13 +47,13 @@ export class SelectedRestaurantComponent implements OnInit {
   getReview() {
     this.restService.getRestReview(this.id).subscribe(data => {
       this.reviews = JSON.parse(sessionStorage.getItem('restReviews'));
-      this.reviews.sort(function (a, b) {
-        if (a.review_id < b.review_id)
-          return 1;
-        if (a.review_id > b.review_id)
-          return -1;
+      this.reviews.sort(function(a, b){
+        if ( a.review_id < b.review_id )
+            return 1;
+        if ( a.review_id > b.review_id )
+            return -1;
         return 0;
-      });
+    });
     });
 
   }
@@ -72,10 +70,6 @@ export class SelectedRestaurantComponent implements OnInit {
       (err) => {
         console.log(err);
       })
-  }
-
-  goToUser(userId: number) {
-    this.router.navigate(['/'+userId]);
   }
 
   //   onSubmit(): void {

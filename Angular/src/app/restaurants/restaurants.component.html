@@ -1,0 +1,32 @@
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Street Address</th>
+                <th>City</th>
+                <th>Zip Code</th>
+                <th>Owner</th>
+                <th>Culture</th>
+                <th>Reviews</th>
+            </tr>
+        </thead>
+        <tbody id="ers-table-body">
+            <tr class="clickable" *ngFor = "let key of allRestaurants" (click)="restChosen(key.restaruantId)">
+                <td>{{key.restaruantId}}</td>
+                <td>{{key.streetAddress}}</td>
+                <td>{{key.city}}</td>
+                <td>{{key.zipCode}}</td>
+                <td>{{key.ownerId}}</td>
+                <td>{{key.culture}}</td>
+                <!-- <td *ngFor="let review of restaurants.reviews">{{review.review_id}}</td> --> -->
+                <!-- <td>{{restaurants.reviews[0].review_id}}</td>-->
+
+            </tr>
+            <!-- {{restaurants | json}} -->
+
+        </tbody>
+    </table>
+</div>
+
+{{allRestaurants | json}}

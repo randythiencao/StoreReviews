@@ -38,7 +38,6 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
 import { RestResolve } from './service/rest.resolve';
 import { UserResolve } from './service/user.resolve';
-import { SomeProfileComponent } from './some-profile/some-profile.component';
 
 
 
@@ -69,8 +68,7 @@ import { SomeProfileComponent } from './some-profile/some-profile.component';
     ChangeinfoComponent,
     IreviewedComponent,
     RestaurantsComponent,
-    SelectedRestaurantComponent,
-    SomeProfileComponent
+    SelectedRestaurantComponent
 
    ],
   providers: [

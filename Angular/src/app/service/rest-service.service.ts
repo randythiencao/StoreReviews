@@ -38,9 +38,8 @@ export class RestService {
 
 
   getRestReview(id: number) {
-    let currRest: Restaurant = JSON.parse(sessionStorage.getItem('currentRestaurant'));
     console.log(environment.context + 'restaurants/getReviews/' + id);
-    return this.http.post(environment.context + 'restaurants/getReviews/'+ id, currRest.name)
+    return this.http.get(environment.context + 'restaurants/getReviews/'+ id)
       .map(
         (response: Response) => {
 
