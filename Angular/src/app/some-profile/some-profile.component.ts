@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserRevRest } from '../components/beans/UserRevRest';
 
 @Component({
   selector: 'app-some-profile',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SomeProfileComponent implements OnInit {
 
-  constructor() { }
+  reviews: Array<UserRevRest>;
+
+  constructor(private router: Router) { }
 
   ngOnInit() {
+
+  }
+
+
+  goToRest(id: number) {
+    this.router.navigate(['/add', id]);
   }
 
 }
