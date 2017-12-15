@@ -3,7 +3,7 @@
     <table class="table table-striped" style="color:white">
         <thead>
             <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Name</th>
                 <th>Street Address</th>
                 <th>Culture</th>
@@ -14,7 +14,7 @@
         </thead>
         <tbody id="ers-table-body">
             <tr class="clickable" *ngFor = "let key of allRestaurants" (click)="restChosen(key.restaruantId)">
-                <td>{{key.restaruantId}}</td>
+                <!-- <td>{{key.restaruantId}}</td> -->
                 <td>{{key.name}}</td>
                 <td>{{key.culture}}</td>
                 <td>{{key.streetAddress}}</td>

@@ -65,6 +65,9 @@ export class SelectedRestaurantComponent implements OnInit {
   addReview() {
 
     let user: User = JSON.parse(sessionStorage.getItem('currentUser'));
+    if ((this.model.rating <= 0) && (this.model.rating > 5)) {
+      return null;
+    }
     this.restService.addReview(this.model, user.userId, this.restaurant.restaruantId)
       .subscribe((resp) => {
         console.log('added review successfully');
@@ -75,14 +78,13 @@ export class SelectedRestaurantComponent implements OnInit {
       })
   }
 
-  goToUser(userId: number,username: String) {
-    console.log('supplied '+userId+' '+username)
-    this.router.navigate(['/profile/',username,userId]);
+  goToUser(userId: number, username: String) {
+    console.log('supplied ' + userId + ' ' + username)
+    this.router.navigate(['/profile/', username, userId]);
   }
 
-  getUrl()
-  {
-    return "url("+this.restaurant.picture+")";
+  getUrl() {
+    return "url(" + this.restaurant.picture + ")";
   }
   //   onSubmit(): void {
   //     console.log('called the submit form with json obj');

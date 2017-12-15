@@ -41,7 +41,7 @@ import { UserResolve } from './service/user.resolve';
 import { SomeProfileComponent } from './some-profile/some-profile.component';
 import { MapService } from './service/map.service';
 import { MapResolve } from './service/map.resolve';
-
+import { NguiMapModule } from '@ngui/map';
 
 
 @NgModule({
@@ -55,7 +55,9 @@ import { MapResolve } from './service/map.resolve';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    InlineEditorModule
+    InlineEditorModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAncGW5Fke707z9MxCTKZKT9f0w6QFhAcs'})
+    
   ],
   declarations: [
     AppComponent,
