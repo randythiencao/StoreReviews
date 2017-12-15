@@ -75,8 +75,8 @@ export class SelectedRestaurantComponent implements OnInit {
       })
   }
 
-  goToUser(userId: number) {
-    this.router.navigate(['/'+userId]);
+  goToUser(userId: number,username: String) {
+    this.router.navigate(['/'+username+'/'+userId]);
   }
 
   //   onSubmit(): void {

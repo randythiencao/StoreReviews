@@ -18,7 +18,7 @@
             <div class="card" style="margin-bottom:30px;" *ngFor="let review of reviews">
                 <!--text-center"-->
                 <div class="card-header">
-                    <strong><a (click)="goToUser(review.userId)"> {{review.username}} </a></strong>said: {{review.review_id}}
+                    <strong><a (click)="goToUser(review.userId, review.username)"> {{review.username}} </a></strong>said: {{review.review_id}}
                 </div>
                 <div class="card-block">
                     <p class="card-title">
@@ -69,10 +69,10 @@
                         <input type="number" class="form-control" id="rating" [(ngModel)]="model.rating" #rating="ngModel" name="rating" min="1"
                             max="5" pInputText>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="picture" class="col-form-label">Picture: </label>
                         <input type="file" class="form-control" id="picture" [(ngModel)]="model.picture" #picture="ngModel" name="picture" pInputText>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="comment" class="col-form-label">Comment: </label>
                         <input type="text" class="form-control" id="comment" [(ngModel)]="model.comment" #picture="ngModel" name="comment" pInputText>

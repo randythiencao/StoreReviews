@@ -87,7 +87,7 @@ export const appRoutes: Routes = [
         }
       },
       {
-        path: ':id',
+        path: ':name/:id',
         component: SomeProfileComponent,
         resolve: {
           reviews: UserResolve

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserRevRest } from '../components/beans/UserRevRest';
 import { ActivatedRoute } from '@angular/router';
+import { ControlPanelService } from '../service/control-panel.service';
+import { User } from '../components/beans/User';
 
 @Component({
   selector: 'app-some-profile',
@@ -13,15 +15,28 @@ export class SomeProfileComponent implements OnInit {
   reviews: Array<UserRevRest>;
   sub: any;
   id: number
+  username: String;
 
-  constructor(private router: Router, private activatedRouter: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRouter: ActivatedRoute,
+  private cpService : ControlPanelService) { }
 
   ngOnInit() {
     this.sub = this.activatedRouter.params.subscribe(params => {
       this.id = +params['id'];
     });
 
-    console.log('link sent '+ this.id)
+    console.log(this.username);
+    this.getReview();
+  }
+
+  getReview() {
+    this.cpService.getReviewByUser().subscribe(data => {
+      this.reviews = JSON.parse(sessionStorage.getItem('userReviews'));
+      this.reviews.sort(function (obj1, obj2) {
+        // Ascending: first age less than the previous
+        return obj2.review_id - obj1.review_id;
+      });
+    })
   }
 
 
