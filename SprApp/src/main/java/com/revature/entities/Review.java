@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="reviews")
-public class Review {
+public class Review implements Comparable<Review>{
 	@Id
 	@SequenceGenerator(name = "REVIEW_SEQ", sequenceName = "REVIEW_SEQ")
 	@GeneratedValue(generator = "REVIEW_SEQ", strategy = GenerationType.AUTO)
@@ -92,6 +92,10 @@ public class Review {
 	public String toString() {
 		return "Review [review_id=" + review_id + ", rating=" + rating + ", picture=" + Arrays.toString(picture)
 				+ ", comment=" + comment + "]";
+	}
+	@Override
+	public int compareTo(Review review) {
+		return Integer.compare(this.getReview_id(), review.getReview_id());
 	}
 	
 	

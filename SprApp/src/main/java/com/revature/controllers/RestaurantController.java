@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.revature.entities.Restaurant;
 import com.revature.entities.Review;
+import com.revature.entities.User;
+import com.revature.entities.UserReviewRest;
 import com.revature.services.RestaurantService;
 import com.revature.services.UserService;
 
@@ -27,7 +30,7 @@ public class RestaurantController {
 	RestaurantService rs;
 	
 	@Autowired
-	UserService us;
+	UserService us;// = new UserService();
 
 	@GetMapping("get/{id}")
 	public Restaurant findById(@PathVariable int id) {
@@ -36,9 +39,11 @@ public class RestaurantController {
 	}
 	
 	// Instead of new user and new restaurant I need to get the user id from the session and get the rest id from the json
-    @PostMapping("addReview/{restId}/{userId}")
+    @PostMapping("addReview/{userId}/{restId}")
     public Review AddReview(@RequestBody Review review, @PathVariable int userId, @PathVariable int restId) {
         System.out.println("attempting to add review: " + review.toString());
+        System.out.println("got userId: " + userId);
+        System.out.println("got restId: "+ restId);
         return rs.addReview(us.getUserById(userId), rs.getRestaurantById(restId), review);
     }
 	
@@ -48,9 +53,15 @@ public class RestaurantController {
 		return rs.getAll();
 	}
 	
-	@GetMapping("getReviews/{restId}")
-	public ResponseEntity<?> getRestaurantsReviewsByRestaurantId(@PathVariable int restId) {
+	@PostMapping("getReviews/{restId}")
+	public ResponseEntity<?> getRestaurantsReviewsByRestaurantId(@RequestBody String restName, @PathVariable int restId) {
 		System.err.println("in getreviews/restid");
-		return new ResponseEntity<>(rs.getRestaurantsReviewsByRestaurantId(restId), HttpStatus.OK);
+		System.out.println(restName);
+		
+		List<Review> restReviews = new ArrayList<>(rs.getRestaurantsReviewsByRestaurantId(restId));
+		List<User> allUsers = us.getAllUsers();
+		List<UserReviewRest> uRs = rs.constructUserRevRest(restId, restName, restReviews, allUsers);
+		System.out.println(uRs);
+		return new ResponseEntity<>(uRs, HttpStatus.OK);
 	}
 }

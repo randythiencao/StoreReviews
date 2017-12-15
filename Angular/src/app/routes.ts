@@ -9,8 +9,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ChangepassComponent } from './changepass/changepass.component';
 import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
 import { IreviewedComponent } from './ireviewed/ireviewed.component';
-import { ChooseComponent } from './components/choose/choose.component';
-import { AddComponent } from './components/add/add.component';
+
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
+import { RestResolve } from './service/rest.resolve';
+import { UserResolve } from './service/user.resolve';
+import { SomeProfileComponent } from './some-profile/some-profile.component';
+import { MapResolve } from './service/map.resolve';
 
 
 export const appRoutes: Routes = [
@@ -24,17 +29,13 @@ export const appRoutes: Routes = [
       {
         path: '',
         component: MainComponent,
-        children: [
-          {
-            path: '',
-            component: ChooseComponent
-          },
-          {
-            path:'add/:id',
-            component: AddComponent
-          }
+        // children: [
+        //   {
+        //     path: '',
+        //     component: ChooseComponent
+        //   }
 
-        ]
+        // ]
       }
     ]
   },
@@ -52,7 +53,11 @@ export const appRoutes: Routes = [
     path: 'register', component: RegComponent
   },
   {
-    path: '', component: MainLayoutComponent,
+    path: '', 
+    component: MainLayoutComponent,
+    // resolve: {
+    //   markers: MapResolve
+    // },
     children: [
       {
         path: 'profile',
@@ -68,10 +73,32 @@ export const appRoutes: Routes = [
           },
           {
             path: 'ireviewed',
-            component: IreviewedComponent
+            component: IreviewedComponent,
+            resolve: {
+              reviews: UserResolve
+            }
+          },
+          {
+            path: ':username/:userId',
+            component: SomeProfileComponent,
+            resolve: {
+              reviews: UserResolve
+            }
           }
         ]
+      },
+      {
+        path: 'restaurants',
+        component: RestaurantsComponent
+      },
+      {
+        path: 'add/:id',
+        component: SelectedRestaurantComponent,
+        resolve: {
+          restaurant: RestResolve
+        }
       }
+      
     ]
   },
 

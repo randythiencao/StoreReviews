@@ -28,7 +28,7 @@ export class ChangepassComponent implements OnInit {
     if (this.newpassword === this.confpassword) {
       this.user = JSON.parse(sessionStorage.getItem('currentUser'));
       this.user.password = this.newpassword;
-      this.cpService.updateInfo(this.user)
+      this.cpService.updatePass(this.user)
         .subscribe(data => {
           this.alert.success('Password Updated', true);
         },

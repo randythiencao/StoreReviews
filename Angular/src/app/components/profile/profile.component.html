@@ -21,7 +21,7 @@
 <div>
     
     <div class="row">
-        <div class="col-3">
+        <div class="col-3" style="background-color: black; height: 92vh;">
             <ul>
                 <li id="welcome">
                     Welcome, {{user.firstName}}
@@ -35,12 +35,9 @@
                 <li>
                     <a routerLink="ireviewed">Your Reviews</a>
                 </li>
-                <li>
-                    <a routerLink="regrest">Register Your Business</a>
-                </li>
             </ul>
         </div>
-        <div class="col-9">
+        <div class="col-9" style="background-color: black; height: 92vh;">
                 <router-outlet></router-outlet>
         </div>
     </div>

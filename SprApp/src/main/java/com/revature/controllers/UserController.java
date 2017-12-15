@@ -55,6 +55,8 @@ public class UserController {
 	public Set<Review> getUsersReviewsByUserId(@PathVariable int userId) {
 		return us.getUsersReviewsByUserId(userId);
 	}
+	
+
 
 	// @GetMapping
 	// public List<User> getAllUsers() {

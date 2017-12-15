@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, enableProdMode } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { UIRouterModule } from '@uirouter/angular';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,27 +32,32 @@ import { ControlPanelService } from './service/control-panel.service';
 import { ChangeinfoComponent } from './changeinfo/changeinfo.component';
 import {InlineEditorModule} from '@qontu/ngx-inline-editor';
 import { IreviewedComponent } from './ireviewed/ireviewed.component';
-import { RestaurantService } from './service/restaurant.service';
-import { AddComponent } from './components/add/add.component';
-import { ChooseComponent } from './components/choose/choose.component';
+
 import { RestService } from './service/rest-service.service';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { SelectedRestaurantComponent } from './selected-restaurant/selected-restaurant.component';
+import { RestResolve } from './service/rest.resolve';
+import { UserResolve } from './service/user.resolve';
+import { SomeProfileComponent } from './some-profile/some-profile.component';
+import { MapService } from './service/map.service';
+import { MapResolve } from './service/map.resolve';
+import { NguiMapModule } from '@ngui/map';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
-    NgbModule.forRoot(),
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAncGW5Fke707z9MxCTKZKT9f0w6QFhAcs'
     }),
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    InlineEditorModule
-
-
-
+    InlineEditorModule,
+    NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAncGW5Fke707z9MxCTKZKT9f0w6QFhAcs'})
+    
   ],
   declarations: [
     AppComponent,
@@ -69,9 +72,9 @@ import { RestService } from './service/rest-service.service';
     ChangepassComponent,
     ChangeinfoComponent,
     IreviewedComponent,
-    AddComponent,
-    ChooseComponent
-    
+    RestaurantsComponent,
+    SelectedRestaurantComponent,
+    SomeProfileComponent
 
    ],
   providers: [
@@ -81,7 +84,10 @@ import { RestService } from './service/rest-service.service';
     ControlPanelService,
     GeocodingApiService,
     RestService,
-    RestaurantService
+    MapService,
+    RestResolve,
+    UserResolve,
+    MapResolve
     
    ],
   bootstrap: [AppComponent ]

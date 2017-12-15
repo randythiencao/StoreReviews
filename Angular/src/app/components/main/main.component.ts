@@ -2,7 +2,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Http } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { User } from '../beans/User';
-import { GeocodingApiService } from '../../service/geoapi.service';
+
 import {
   BrowserModule
 } from '@angular/platform-browser';
@@ -11,82 +11,58 @@ import {
   AgmCoreModule
 } from '@agm/core';
 import { Restaurant } from '../beans/Restaurant';
+import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
+import { MapService } from '../../service/map.service';
+import { Marker } from '@ngui/map/dist/directives/marker';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  // google maps zoom level
-  zoom: number = 8;
+  public positions= [];
 
-  restaurants: Array<Restaurant>;
-  // initial center position for the map
-  lat: number = 28.0720588;
-  lng: number = -82.4284711;
-
-
-  markers: marker[] = [
-    {
-      lat: 28.0720588,
-      lng: -82.4284711,
-      label: 'B',
-      draggable: false
-    },
-    {
-      lat: 28.0622991,
-      lng: -82.4090294,
-      label: 'C',
-      draggable: true
+    constructor() {
+      this.positions = this.getRandomMarkers();
+  
     }
-  ]
-
-  constructor(private http: Http) { }
-
-  ngOnInit() {
-    this.restaurants = JSON.parse(sessionStorage.getItem('allRestaurants'));
-    this.populateMap();
-  }
-
- 
-  populateMap() {
-    for (let rest of this.restaurants)
-    {
-      console.log(rest)
-      this.markers.push({
-        lat: 28.0807637,
-        lng: -82.4305818,
-        label: 't',
-        draggable: false
-      });
+    
+    onMapReady(map) {
+      console.log('map', map);
+      console.log('markers', map.markers);  // to get all markers as an array 
     }
-  }
+  
+    getRandomMarkers() {
+      let randomLat: number, randomLng: number;
+  
+      let positions = [];
+      for (let i = 0 ; i < 9; i++) {
+        randomLat = Math.random() * (43.7399 - 43.7300) + 28.0584618;
+        randomLng = Math.random() * (-79.7600 - -79.7699) + -82.4095894;
+        positions.push([randomLat, randomLng]);
+      }
+      return positions;
+    }
+  
+    showMarkersFromObservable() {
+      Observable.of(this.getRandomMarkers()) // Think this as http call
+        .subscribe( positions => {
+          this.positions = positions;
+        });
+    }
 
-  clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
-  }
-
-  mapClicked($event: any) {
-    this.markers.push({
-      lat: $event.coords.lat,
-      lng: $event.coords.lng,
-      draggable: false
-    });
-  }
-
-  markerDragEnd(m: marker, $event: MouseEvent) {
-    console.log('dragEnd', m, $event);
-  }
-
-
-
+    markerClicked(target: Marker)
+    {
+      console.log(target);
+    }
 }
 // just an interface for type safety.
-interface marker {
-  lat: number;
-  lng: number;
-  label?: String;
-  draggable: boolean;
-}
+// interface marker {
+//   lat: number;
+//   lng: number;
+//   label?: String;
+//   draggable: boolean;
+// }

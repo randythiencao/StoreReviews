@@ -1,5 +1,5 @@
 <!-- <p-growl [value]="messages" sticky="sticky"></p-growl> -->
-<div class="container">
+<div class="container" style="color: white">
     <div class="row">
         <div class="col-3"></div>
         <div class="col-6">
@@ -17,10 +17,10 @@
                 <input type="text" [(ngModel)]="model.lastName" name="lastName" id="inputLast" class="form-control" placeholder="Last Name"
                     required>
                 <input type="email" [(ngModel)]="model.email" name="email" id="inputEmail" class="form-control" placeholder="Email" required>
-                <select [(ngModel)]="model.roleId" name="selectRole">
+                <!-- <select [(ngModel)]="model.roleId" name="selectRole"> -->
                     <!--(ngModelChange)="toNumber()"> -->
-                    <option *ngFor="let role of roles" [ngValue]="role.num">{{role.name}}</option>
-                </select>
+                    <!-- <option *ngFor="let role of roles" [ngValue]="role.num">{{role.name}}</option> -->
+                <!-- </select> -->
                 <hr class="colorgraph">
                 <pre>{{registerForm.valid}}</pre>
                 <button class="btn btn-md btn-primary btn-block" type="submit" name="Register" [disabled]="!registerForm.form.valid" value="Register">Register</button>
@@ -60,5 +60,3 @@
     </div>
     <button class="btn btn-primary" type="submit" label="Register">Register</button>
 </form> -->
-    <p>returned from spring, yay...</p>
-    <p>{{model | json}}</p>
