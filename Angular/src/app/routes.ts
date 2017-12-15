@@ -55,9 +55,9 @@ export const appRoutes: Routes = [
   {
     path: '', 
     component: MainLayoutComponent,
-    resolve: {
-      markers: MapResolve
-    },
+    // resolve: {
+    //   markers: MapResolve
+    // },
     children: [
       {
         path: 'profile',
@@ -89,16 +89,14 @@ export const appRoutes: Routes = [
       },
       {
         path: 'restaurants',
-        component: RestaurantsComponent,
-        children: [
-          {
-            path: 'add/:id',
-            component: SelectedRestaurantComponent,
-            resolve: {
-              restaurant: RestResolve
-            }
-          }
-        ]
+        component: RestaurantsComponent
+      },
+      {
+        path: 'add/:id',
+        component: SelectedRestaurantComponent,
+        resolve: {
+          restaurant: RestResolve
+        }
       }
       
     ]

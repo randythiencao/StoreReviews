@@ -23,20 +23,20 @@ export class MapService implements OnInit {
 }
 
 
-  getRestMarkers() : Observable<any>{
-      console.log('getting markers')
-    for (let rest of this.restaurants) {
-        this.temp.push({
-            lat: 28.0720588 + rest.restaruantId,
-            lng: -82.4284711 + rest.restaruantId,
-            label: rest.restaruantId.toString(),
-            draggable: false
-        })
-    }
-    this.markers.next(this.temp);
-    console.log('from service '+ this.temp)
-    return this.markers.asObservable();
-  }
+  // getRestMarkers() : Observable<any>{
+  //     console.log('getting markers')
+  //   for (let rest of this.restaurants) {
+  //       this.temp.push({
+  //           lat: 28.0720588 + rest.restaruantId,
+  //           lng: -82.4284711 + rest.restaruantId,
+  //           label: rest.restaruantId.toString(),
+  //           draggable: false
+  //       })
+  //   }
+  //   this.markers.next(this.temp);
+  //   console.log('from service '+ this.temp)
+  //   return this.markers.asObservable();
+  // }
 
 
 

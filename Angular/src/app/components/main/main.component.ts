@@ -45,7 +45,7 @@ export class MainComponent implements OnInit {
 
 
   getMarkers() {
-    this.mapService.getRestMarkers().subscribe(resp => {console.log(resp)});
+    // this.mapService.getRestMarkers().subscribe(resp => {console.log(resp)});
 
   }
   clickedMarker(label: string, index: number) {

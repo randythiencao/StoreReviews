@@ -20,7 +20,7 @@ export class RestaurantsComponent implements OnInit {
   }
   restChosen(id: number) {
     console.log('called choose ts for id' + id);
-    this.router.navigate(['/restaurants/add', id]);
+    this.router.navigate(['/add', id]);
   }
 
 

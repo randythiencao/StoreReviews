@@ -46,7 +46,7 @@ public class CPService {
 		temp.setFirstName(u.getFirstName());
 		temp.setLastName(u.getLastName());
 		temp.setEmail(u.getEmail());
-		temp.setPassword(u.getPassword());
+		temp.setPassword(ud.findByUsername(u.getUsername()).getPassword());
 		temp.setSalt(u.getSalt());
 		System.out.println(u);
 		try {
