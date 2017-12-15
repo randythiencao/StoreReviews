@@ -26,12 +26,11 @@ public class ReviewDaoHibernate implements ReviewDao {
 	public Review addReview(User user, Restaurant restaurant, Review review) {
 		Session se = su.getSession();
 		se.beginTransaction();
-		System.out.println("In review dao hibernate: adding review, user: "+user.toString() +" restaurant: " +restaurant.toString()+ " review: " +review.toString());
 		System.out.println(user.getReviews().toString()+" review trying to add "+ review.toString());
 		se.save(review);
 		user.getReviews().add(review);
 		se.merge(user);
-		System.out.println(restaurant.getReviews().toString());
+//		System.out.println(restaurant.getReviews().toString());
 		restaurant.getReviews().add(review);
 		se.merge(restaurant);
 		se.getTransaction().commit();

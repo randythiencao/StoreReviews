@@ -47,84 +47,94 @@ public class User {
 	private int roleId;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Review> reviews = new HashSet<Review>(0);
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(int userId, String username, String password, String firstName, String lastName, String email,
-			byte[] salt, int roleId, Set<Review> reviews) {
-		super();
-		this.userId = userId;
-		this.username = username;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.salt = salt;
-		this.roleId = roleId;
-		this.reviews = reviews;
-	}
+
 	public int getUserId() {
 		return userId;
 	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public byte[] getSalt() {
 		return salt;
 	}
+
 	public void setSalt(byte[] salt) {
 		this.salt = salt;
 	}
+
 	public int getRoleId() {
 		return roleId;
 	}
+
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
+
+//
+//	public Date getCreated() {
+//		return created;
+//	}
+//
+//	public void setCreated(Date created) {
+//		this.created = created;
+//	}
+	
 	public Set<Review> getReviews() {
 		return reviews;
 	}
+
 	public void setReviews(Set<Review> reviews) {
 		this.reviews = reviews;
 	}
+
 	
-	@Override
-	public String toString() {
-		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
-				+ firstName + ", lastName=" + lastName + ", email=" + email + ", salt=" + Arrays.toString(salt)
-				+ ", roleId=" + roleId + ", reviews=" + reviews + "]";
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,6 +150,7 @@ public class User {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -188,6 +199,11 @@ public class User {
 		return true;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", firstName="
+				+ firstName + ", lastName=" + lastName + ", email=" + email + ", salt=" + Arrays.toString(salt)
+				+ ", roleId=" + roleId + ", reviews=" + reviews + "]";
+	}
+
 }

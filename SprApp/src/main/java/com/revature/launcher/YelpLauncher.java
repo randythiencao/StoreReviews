@@ -14,7 +14,7 @@ import com.revature.dao.ReviewDao;
 import com.revature.dao.ReviewDaoHibernate;
 import com.revature.dao.UserDao;
 import com.revature.dao.UserDaoHibernate;
-import com.revature.entities.Review;
+import com.revature.entities.Restaurant;
 import com.revature.services.RestaurantService;
 import com.revature.services.UserService;
 import com.revature.utilities.SessionUtil;
@@ -60,7 +60,7 @@ public class YelpLauncher {
 		
 		
 		// Add a Review: This method adds to both the rest_rating and user_rating junction tables
-		rd.addReview(ud.getUserById(19), resd.getRestaurantById(41), new Review()); // checked in db: it does add a review to review table
+//		rd.addReview(ud.getUserById(1), resd.getRestaurantById(1), new Review()); // checked in db: it does add a review to review table
 //		System.out.println(ud.getUserById(1));
 //		System.out.println(resd.getRestaurantById(1));
 
@@ -79,7 +79,8 @@ public class YelpLauncher {
 		
 		// Add a Restaurant Method
 //		System.out.println("Adding restaurant...");
-//		Restaurant r = new Restaurant(0, "1 Robert Morris St", "Buffalo is tight", "Pittsburg", "12345", null, 0, "america", null);
+//		Restaurant r = new Restaurant(1, "123 N Robert Morris St", "Buffalo's Best Pizza", "Buffalo", "14201", "https://static1.squarespace.com/static/540de6b3e4b0131a4d813120/5522d15ae4b0418888602aeb/5522d611e4b0e72a96c86c3a/1445381420775/ERB_PizzeriaOttoOven1.jpg?format=1500w", null, "Italian", null);
+//		Restaurant r = new Restaurant(1, "49 Main St", "Not Cheesecake Factory", "San Antonio", "TX", "44123", "http://quandoo-creatives.s3.amazonaws.com/collections/topical_pages_header_images/finedining1.jpg", 0, "American", null);
 //		System.out.println(r.toString());
 //		resd.addRestaurant(r);
 		

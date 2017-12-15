@@ -24,9 +24,8 @@ public class RestaurantService {
 	}
 
 	public Review addReview(User user, Restaurant restaurant, Review review) {
-		System.out.println("In restaurant service: Adding review with user: " + user.toString());
-		System.out.println("restaurant: " + restaurant.toString());
-		System.out.println("review: " + review.toString());
+		System.out.println(
+				"user: " + user.toString() + "restaurant: " + restaurant.toString() + "review: " + review.toString());
 		return reviewDao.addReview(user, restaurant, review);
 	}
 

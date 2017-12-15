@@ -26,29 +26,29 @@ public class Restaurant {
 	private String streetAddress;
 	private String name;
 	private String city;
+	private String state;
 	@Column(name="zip_code")
 	private String zipCode;
 	@Column(name="home_picture")
-	private byte[] picture;
+	private String picture;
 	@Column(name="rest_owner_id")
 	private int ownerId;
 	@Column(name="rest_culture")
 	private String culture;
 	@ManyToMany(cascade = CascadeType.ALL)
 	private Set<Review> reviews = new HashSet<Review>(10);
-	
-	
 	public Restaurant() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Restaurant(int restaruantId, String streetAddress, String name, String city, String zipCode, byte[] picture,
-			int ownerId, String culture, Set<Review> reviews) {
+	public Restaurant(int restaruantId, String streetAddress, String name, String city, String state, String zipCode,
+			String picture, int ownerId, String culture, Set<Review> reviews) {
 		super();
 		this.restaruantId = restaruantId;
 		this.streetAddress = streetAddress;
 		this.name = name;
 		this.city = city;
+		this.state = state;
 		this.zipCode = zipCode;
 		this.picture = picture;
 		this.ownerId = ownerId;
@@ -79,16 +79,22 @@ public class Restaurant {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public String getZipCode() {
 		return zipCode;
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	public byte[] getPicture() {
+	public String getPicture() {
 		return picture;
 	}
-	public void setPicture(byte[] picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	public int getOwnerId() {
@@ -117,9 +123,10 @@ public class Restaurant {
 		result = prime * result + ((culture == null) ? 0 : culture.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ownerId;
-		result = prime * result + Arrays.hashCode(picture);
+		result = prime * result + ((picture == null) ? 0 : picture.hashCode());
 		result = prime * result + restaruantId;
 		result = prime * result + ((reviews == null) ? 0 : reviews.hashCode());
+		result = prime * result + ((state == null) ? 0 : state.hashCode());
 		result = prime * result + ((streetAddress == null) ? 0 : streetAddress.hashCode());
 		result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
 		return result;
@@ -150,7 +157,10 @@ public class Restaurant {
 			return false;
 		if (ownerId != other.ownerId)
 			return false;
-		if (!Arrays.equals(picture, other.picture))
+		if (picture == null) {
+			if (other.picture != null)
+				return false;
+		} else if (!picture.equals(other.picture))
 			return false;
 		if (restaruantId != other.restaruantId)
 			return false;
@@ -158,6 +168,11 @@ public class Restaurant {
 			if (other.reviews != null)
 				return false;
 		} else if (!reviews.equals(other.reviews))
+			return false;
+		if (state == null) {
+			if (other.state != null)
+				return false;
+		} else if (!state.equals(other.state))
 			return false;
 		if (streetAddress == null) {
 			if (other.streetAddress != null)
@@ -174,8 +189,9 @@ public class Restaurant {
 	@Override
 	public String toString() {
 		return "Restaurant [restaruantId=" + restaruantId + ", streetAddress=" + streetAddress + ", name=" + name
-				+ ", city=" + city + ", zipCode=" + zipCode + ", picture=" + Arrays.toString(picture) + ", ownerId="
+				+ ", city=" + city + ", state=" + state + ", zipCode=" + zipCode + ", picture=" + picture + ", ownerId="
 				+ ownerId + ", culture=" + culture + ", reviews=" + reviews + "]";
 	}
+	
 	
 }
